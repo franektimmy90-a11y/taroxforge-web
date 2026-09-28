@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TaroXForge | YouTube</title>
+
+    <meta
+        name="description"
+        content="Oficiální web YouTube kanálu TaroXForge."
+    >
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --bg: #07070b;
+            --bg2: #101018;
+            --card: #151520;
+            --text: #ffffff;
+            --muted: #a1a1aa;
+            --accent: #8b5cf6;
+            --accent2: #ec4899;
+            --border: rgba(255,255,255,0.10);
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            width: min(1150px, 92%);
+            margin: auto;
+        }
+
+        /* NAVIGACE */
+
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+
+            background: rgba(7,7,11,0.85);
+            backdrop-filter: blur(15px);
+
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-inner {
+            height: 72px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 23px;
+            font-weight: 900;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--muted);
+            transition: 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: white;
+        }
+
+        /* HERO */
+
+        .hero {
+            min-height: 700px;
+
+            display: flex;
+            align-items: center;
+
+            text-align: center;
+
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "";
+
+            position: absolute;
+
+            width: 600px;
+            height: 600px;
+
+            background: var(--accent);
+
+            opacity: 0.17;
+            filter: blur(140px);
+
+            border-radius: 50%;
+
+            top: 20px;
+            left: 50%;
+
+            transform: translateX(-50%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+
+            max-width: 850px;
+            margin: auto;
+        }
+
+        .badge {
+            display: inline-block;
+
+            padding: 8px 16px;
+
+            border-radius: 50px;
+
+            background: rgba(139,92,246,0.12);
+
+            border: 1px solid rgba(139,92,246,0.35);
+
+            color: #c4b5fd;
+
+            margin-bottom: 25px;
+        }
+
+        .hero h1 {
+            font-size: clamp(55px, 10vw, 100px);
+            line-height: 1;
+
+            margin-bottom: 25px;
+        }
+
+        .gradient {
+            background: linear-gradient(
+                90deg,
+                var(--accent),
+                var(--accent2)
+            );
+
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .hero p {
+            color: var(--muted);
+
+            font-size: 19px;
+
+            max-width: 650px;
+
+            margin: auto;
+        }
+
+        .buttons {
+            margin-top: 35px;
+
+            display: flex;
+            justify-content: center;
+
+            gap: 15px;
+
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+
+            padding: 15px 25px;
+
+            border-radius: 12px;
+
+            font-weight: bold;
+
+            transition: 0.25s;
+        }
+
+        .btn-primary {
+            background: linear-gradient(
+                90deg,
+                var(--accent),
+                var(--accent2)
+            );
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-4px);
+
+            box-shadow:
+                0 15px 40px
+                rgba(139,92,246,0.3);
+        }
+
+        .btn-secondary {
+            background: rgba(255,255,255,0.05);
+
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.10);
+        }
+
+        /* SECTIONS */
+
+        section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            text-align: center;
+
+            max-width: 700px;
+
+            margin: 0 auto 55px;
+        }
+
+        .section-title h2 {
+            font-size: 42px;
+
+            margin-bottom: 15px;
+        }
+
+        .section-title p {
+            color: var(--muted);
+        }
+
+        /* ABOUT */
+
+        .about {
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 40px;
+
+            align-items: center;
+        }
+
+        .about-box {
+            background: var(--card);
+
+            border: 1px solid var(--border);
+
+            border-radius: 22px;
+
+            padding: 35px;
+        }
+
+        .about-box h3 {
+            font-size: 27px;
+
+            margin-bottom: 15px;
+        }
+
+        .about-box p {
+            color: var(--muted);
+        }
+
+        .stats {
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 15px;
+        }
+
+        .stat {
+            background: var(--card);
+
+            border: 1px solid var(--border);
+
+            border-radius: 18px;
+
+            padding: 30px;
+
+            text-align: center;
+        }
+
+        .stat strong {
+            display: block;
+
+            font-size: 35px;
+
+            margin-bottom: 5px;
+        }
+
+        .stat span {
+            color: var(--muted);
+        }
+
+        /* VIDEA */
+
+        .videos {
+            display: grid;
+
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 22px;
+        }
+
+        .video-card {
+            background: var(--card);
+
+            border: 1px solid var(--border);
+
+            border-radius: 18px;
+
+            overflow: hidden;
+
+            transition: 0.25s;
+        }
+
+        .video-card:hover {
+            transform: translateY(-7px);
+
+            border-color: rgba(139,92,246,0.5);
+        }
+
+        .video-frame {
+            width: 100%;
+
+            aspect-ratio: 16 / 9;
+
+            border: 0;
+
+            display: block;
+        }
+
+        .video-info {
+            padding: 22px;
+        }
+
+        .video-info h3 {
+            margin-bottom: 8px;
+        }
+
+        .video-info p {
+            color: var(--muted);
+        }
+
+        .watch {
+            display: inline-block;
+
+            margin-top: 18px;
+
+            color: #c4b5fd;
+
+            font-weight: bold;
+        }
+
+        .watch:hover {
+            text-decoration: underline;
+        }
+
+        /* YOUTUBE */
+
+        .youtube-box {
+            text-align: center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(139,92,246,0.15),
+                    rgba(236,72,153,0.08)
+                );
+
+            border: 1px solid var(--border);
+
+            border-radius: 25px;
+
+            padding: 70px 25px;
+        }
+
+        .youtube-box h2 {
+            font-size: 42px;
+
+            margin-bottom: 15px;
+        }
+
+        .youtube-box p {
+            color: var(--muted);
+
+            max-width: 600px;
+
+            margin: 0 auto 30px;
+        }
+
+        /* FOOTER */
+
+        footer {
+            border-top: 1px solid var(--border);
+
+            padding: 40px 0;
+
+            text-align: center;
+
+            color: var(--muted);
+        }
+
+        /* MOBIL */
+
+        @media (max-width: 850px) {
+
+            .nav-links {
+                display: none;
+            }
+
+            .about {
+                grid-template-columns: 1fr;
+            }
+
+            .videos {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+        @media (max-width: 500px) {
+
+            section {
+                padding: 70px 0;
+            }
+
+            .hero {
+                min-height: 600px;
+            }
+
+            .section-title h2 {
+                font-size: 34px;
+            }
+
+            .youtube-box h2 {
+                font-size: 34px;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVIGACE -->
+
+    <nav>
+
+        <div class="container nav-inner">
+
+            <a href="#" class="logo">
+                Taro<span>X</span>Forge
+            </a>
+
+            <ul class="nav-links">
+
+                <li>
+                    <a href="#about">O kanálu</a>
+                </li>
+
+                <li>
+                    <a href="#videos">Videa</a>
+                </li>
+
+                <li>
+                    <a href="#youtube">YouTube</a>
+                </li>
+
+            </ul>
+
+        </div>
+
+    </nav>
+
+
+    <!-- HLAVNÍ SEKCE -->
+
+    <header class="hero">
+
+        <div class="container hero-content">
+
+            <div class="badge">
+                🎬 Oficiální web YouTube kanálu
+            </div>
+
+            <h1>
+                <span class="gradient">
+                    TaroXForge
+                </span>
+            </h1>
+
+            <p>
+                Vítej na oficiálním webu TaroXForge.
+                Najdeš tady moje videa a informace o mém
+                YouTube kanálu.
+            </p>
+
+            <div class="buttons">
+
+                <a
+                    href="https://www.youtube.com/channel/UCng-zUqeOpQU_viZbEnbN6A"
+                    target="_blank"
+                    class="btn btn-primary"
+                >
+                    ▶ Navštívit YouTube
+                </a>
+
+                <a
+                    href="#videos"
+                    class="btn btn-secondary"
+                >
+                    Moje videa
+                </a>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- O KANÁLU -->
+
+    <section id="about">
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <h2>O TaroXForge</h2>
+
+                <p>
+                    Vítej na mém oficiálním webu.
+                </p>
+
+            </div>
+
+            <div class="about">
+
+                <div class="about-box">
+
+                    <h3>🔥 TaroXForge</h3>
+
+                    <p>
+                        Ahoj! Jsem TaroXForge.
+                        Tohle je můj oficiální web,
+                        kde najdeš moje YouTube videa
+                        a odkazy na můj kanál.
+                    </p>
+
+                    <br>
+
+                    <p>
+                        Pokud se ti moje tvorba líbí,
+                        můžeš mě podpořit odběrem na YouTube.
+                    </p>
+
+                </div>
+
+
+                <div class="stats">
+
+                    <div class="stat">
+                        <strong>🎬</strong>
+                        <span>YouTube videa</span>
+                    </div>
+
+                    <div class="stat">
+                        <strong>🔥</strong>
+                        <span>Tvorba</span>
+                    </div>
+
+                    <div class="stat">
+                        <strong>🎮</strong>
+                        <span>Zábava</span>
+                    </div>
+
+                    <div class="stat">
+                        <strong>🚀</strong>
+                        <span>Nové projekty</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- VIDEA -->
+
+    <section id="videos">
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <h2>Moje videa</h2>
+
+                <p>
+                    Vyber si video a přehraj ho přímo na webu.
+                </p>
+
+            </div>
+
+
+            <div class="videos">
+
+
+                <!-- VIDEO 1 -->
+
+                <div class="video-card">
+
+                    <iframe
+                        class="video-frame"
+                        src="https://www.youtube.com/embed/NapjKYkidIs"
+                        title="TaroXForge video 1"
+                        allowfullscreen>
+                    </iframe>
+
+                    <div class="video-info">
+
+                        <h3>TaroXForge video</h3>
+
+                        <p>
+                            Podívej se na moje video přímo tady.
+                        </p>
+
+                        <a
+                            href="https://www.youtube.com/watch?v=NapjKYkidIs"
+                            target="_blank"
+                            class="watch"
+                        >
+                            Otevřít na YouTube →
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <!-- VIDEO 2 -->
+
+                <div class="video-card">
+
+                    <iframe
+                        class="video-frame"
+                        src="https://www.youtube.com/embed/2ZNNSN3xDHs"
+                        title="TaroXForge video 2"
+                        allowfullscreen>
+                    </iframe>
+
+                    <div class="video-info">
+
+                        <h3>TaroXForge video</h3>
+
+                        <p>
+                            Další video z mého YouTube kanálu.
+                        </p>
+
+                        <a
+                            href="https://www.youtube.com/watch?v=2ZNNSN3xDHs"
+                            target="_blank"
+                            class="watch"
+                        >
+                            Otevřít na YouTube →
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <!-- VIDEO 3 -->
+
+                <div class="video-card">
+
+                    <iframe
+                        class="video-frame"
+                        src="https://www.youtube.com/embed/IgM8ZLkJ7do"
+                        title="TaroXForge video 3"
+                        allowfullscreen>
+                    </iframe>
+
+                    <div class="video-info">
+
+                        <h3>TaroXForge video</h3>
+
+                        <p>
+                            Další video z mého YouTube kanálu.
+                        </p>
+
+                        <a
+                            href="https://www.youtube.com/watch?v=IgM8ZLkJ7do"
+                            target="_blank"
+                            class="watch"
+                        >
+                            Otevřít na YouTube →
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- YOUTUBE -->
+
+    <section id="youtube">
+
+        <div class="container">
+
+            <div class="youtube-box">
+
+                <h2>🎬 Sleduj TaroXForge</h2>
+
+                <p>
+                    Chceš vidět další videa?
+                    Navštiv můj YouTube kanál
+                    a podívej se na další tvorbu.
+                </p>
+
+                <a
+                    href="https://www.youtube.com/channel/UCng-zUqeOpQU_viZbEnbN6A"
+                    target="_blank"
+                    class="btn btn-primary"
+                >
+                    ▶ Otevřít YouTube kanál
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- PATIČKA -->
+
+    <footer>
+
+        <div class="container">
+
+            <p>
+                © 2026 TaroXForge
+            </p>
+
+            <p>
+                Oficiální web YouTube kanálu
+            </p>
+
+        </div>
+
+    </footer>
+
+
+</body>
+</html>
